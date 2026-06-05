@@ -110,3 +110,17 @@ Como experto analista programador, utiliza los documentos creados dentro de la c
 Se ha generado un fichero **USE-CASES.md** con todos los casos de uso.
 
 </br>
+
+## Prompt 6:
+
+Agent: Claude Code - Sonnet 4.6
+
+### Request:
+
+Como experto Producto Owner genera los tickets que van a definir las tareas que implementan los casos de uso.
+
+### Response:
+
+Se ha generado un fichero **TICKETS.md** con todas las tareas.
+
+</br>
