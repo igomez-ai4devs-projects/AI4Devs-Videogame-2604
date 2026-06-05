@@ -52,3 +52,19 @@ space-invaders-IGR/
 El **Canvas 2D** y `requestAnimationFrame` están soportados al 100 % en Chrome y Edge (desde hace más de una década), así que no tendrás problemas de compatibilidad.
 
 </br>
+
+## Prompt 2:
+
+Agent: Claude Code - Sonnet 4.6
+
+### Request:
+
+Como experto Product Owner me generes un fichero CLAUDE.md donde informes de los aspectos principales (sin ser muy extenso) del juego Space Invaders.
+
+También debes añadir las tecnologías que vamos a utilizar según lo elegido: Recomendación principal (Canvas API nativo) y HTML5/CSS/Javascript. Describelas y añade elementos importantes de buenas prácticas, así como, los principales patrones de diseño en videojuegos para que la aplicación sea mantenibles, extensible y testeable.
+
+### Response:
+
+Se ha generado un fichero **CLAUDE.md** con las recomendaciones principales para el proyecto.
+
+</br>
