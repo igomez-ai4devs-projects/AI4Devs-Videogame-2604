@@ -2,6 +2,7 @@
 
 import { CONFIG } from "./config.js";
 import { Input } from "./systems/input.js";
+import { AudioManager } from "./systems/audio.js";
 import { StateMachine } from "./states/stateMachine.js";
 import { MenuState } from "./states/menuState.js";
 import { PlayState } from "./states/playState.js";
@@ -13,6 +14,7 @@ class Game {
     this.ctx = canvas.getContext("2d");
     this.ctx.imageSmoothingEnabled = false;
     this.input = new Input(canvas);
+    this.audio = new AudioManager(); // SFX (SI-21)
 
     // High-score persistente entre sesiones (SI-20)
     this.highScore = this.loadHighScore();
@@ -79,6 +81,9 @@ class Game {
     // Delta time en segundos, acotado para evitar saltos tras un parón (SI-02)
     const dt = Math.min((timestamp - this.lastTime) / 1000 || 0, 0.05);
     this.lastTime = timestamp;
+
+    // Desbloquea el audio tras el primer gesto del usuario (autoplay policy)
+    if (this.input.pressed.size > 0 || this.input.clicked) this.audio.resume();
 
     this.machine.update(dt);
 

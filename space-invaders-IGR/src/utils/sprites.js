@@ -90,12 +90,25 @@ const UFO = [
   "0110000011000000",
 ];
 
+// Explosión / impacto · 8x8 (SI-21)
+const EXPLOSION = [
+  "00100100",
+  "10100101",
+  "01011010",
+  "00111100",
+  "00111100",
+  "01011010",
+  "10100101",
+  "00100100",
+];
+
 export const SPRITES = {
   A: [A1, A2],
   B: [B1, B2],
   C: [C1, C2],
   PLAYER,
   UFO,
+  EXPLOSION,
 };
 
 /** Ancho en píxeles lógicos (columnas) de un sprite. */
