@@ -25,3 +25,22 @@ export function resolvePlayerBullets(bullets, grid) {
   }
   return gained;
 }
+
+/**
+ * Resuelve impactos de proyectiles enemigos contra el jugador (SI-10, RF-19).
+ * Si el jugador es vulnerable y recibe impacto, consume el proyectil.
+ * @param {import("../entities/bullet.js").Bullet[]} bullets
+ * @param {import("../entities/player.js").Player} player
+ * @returns {boolean} true si el jugador fue alcanzado
+ */
+export function resolveEnemyBullets(bullets, player) {
+  if (player.invulnerable) return false;
+  for (const bullet of bullets) {
+    if (!bullet.alive) continue;
+    if (aabb(bullet, player.box)) {
+      bullet.alive = false;
+      return true;
+    }
+  }
+  return false;
+}

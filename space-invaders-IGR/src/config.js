@@ -19,10 +19,12 @@ export const CONFIG = {
     cooldown: 0.4, // s entre disparos
     lives: 3,
     marginBottom: 84, // distancia del jugador al borde inferior
+    invulnTime: 1.6, // s de invulnerabilidad tras ser impactado (SI-10)
   },
 
   bullet: {
     playerSpeed: 620, // px/s (hacia arriba)
+    enemySpeed: 300, // px/s (hacia abajo) (SI-13)
     width: 3,
     height: 14,
   },
@@ -38,6 +40,14 @@ export const CONFIG = {
     stepDown: 22, // descenso al tocar borde
     baseInterval: 0.62, // s entre pasos con la formación completa
     minInterval: 0.06, // s entre pasos cuando quedan pocos
+    fireBaseInterval: 1.1, // s medio entre disparos enemigos (SI-13)
+    fireMinInterval: 0.35, // límite inferior del intervalo de disparo
+  },
+
+  // Progresión de oleadas (SI-17)
+  waves: {
+    speedup: 0.84, // factor multiplicador del intervalo por nivel (más rápido)
+    fireSpeedup: 0.9, // los enemigos disparan más a menudo por nivel
   },
 
   // Puntuación por tipo de invasor (ver GAME-DESIGN.md §2.1)

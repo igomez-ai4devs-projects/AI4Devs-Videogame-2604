@@ -12,8 +12,10 @@ function typeForRow(row) {
 }
 
 export class InvaderGrid {
-  constructor() {
+  /** @param {number} [level=1] nivel/oleada actual (acelera la formación). */
+  constructor(level = 1) {
     const { rows, cols, cellW, cellH, startY } = CONFIG.invaders;
+    this.level = level;
     this.invaders = [];
     this.dir = 1; // 1 = derecha, -1 = izquierda
     this.frame = 0;
@@ -44,11 +46,28 @@ export class InvaderGrid {
     return this.aliveInvaders.length;
   }
 
-  /** Intervalo entre pasos: acelera al reducirse la población (RF-13). */
+  /** Intervalo entre pasos: acelera al reducirse la población (RF-13)
+   *  y con el nivel/oleada (SI-17). */
   get stepInterval() {
     const { baseInterval, minInterval } = CONFIG.invaders;
     const fraction = this.aliveCount / this.total;
-    return Math.max(minInterval, baseInterval * fraction);
+    const levelFactor = Math.pow(CONFIG.waves.speedup, this.level - 1);
+    return Math.max(minInterval, baseInterval * fraction * levelFactor);
+  }
+
+  /**
+   * Invasores que pueden disparar: el más bajo de cada columna (SI-13).
+   * @returns {Invader[]}
+   */
+  getShooters() {
+    const lowestByColumn = new Map();
+    for (const inv of this.aliveInvaders) {
+      // Agrupa por columna usando el centro horizontal redondeado
+      const colKey = Math.round((inv.x + inv.w / 2) / 4);
+      const current = lowestByColumn.get(colKey);
+      if (!current || inv.y > current.y) lowestByColumn.set(colKey, inv);
+    }
+    return [...lowestByColumn.values()];
   }
 
   update(dt) {
