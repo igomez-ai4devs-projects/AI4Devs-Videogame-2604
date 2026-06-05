@@ -82,3 +82,17 @@ Como experto Analista de Software y Product Owner generame un PRD o documento co
 Se ha generado un fichero **PRD.md** con todos los requisitos funcionales del sistema.
 
 </br>
+
+## Prompt 4:
+
+Agent: Claude Code - Sonnet 4.6
+
+### Request:
+
+Como experto diseñador de videojuegos, basándote en las 3 imágenes que te paso quiero que diseñes las pantallas y los elementos del juego. Quiero que se parezca al juego clásico.
+
+### Response:
+
+Se ha generado un fichero **GAME-DESIGN.md** con todos los requisitos de diseño del videojuego.
+
+</br>
