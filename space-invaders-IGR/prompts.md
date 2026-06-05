@@ -68,3 +68,17 @@ También debes añadir las tecnologías que vamos a utilizar según lo elegido: 
 Se ha generado un fichero **CLAUDE.md** con las recomendaciones principales para el proyecto.
 
 </br>
+
+## Prompt 3:
+
+Agent: Claude Code - Sonnet 4.6
+
+### Request:
+
+Como experto Analista de Software y Product Owner generame un PRD o documento con los requisitos funcionales del sistema
+
+### Response:
+
+Se ha generado un fichero **PRD.md** con todos los requisitos funcionales del sistema.
+
+</br>
