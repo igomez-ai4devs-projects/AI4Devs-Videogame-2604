@@ -138,3 +138,24 @@ Como experto desarrollador de videojuegos en javascript/HTML/CSS, comienza a imp
 Se ha implementado el MVP con las principales tareas. SI-01 A SI-06.
 
 </br>
+
+## Prompt 8:
+
+Agent: Claude Code - Sonnet 4.6
+
+### Request:
+
+Sigue con la Fase 2:
+
+- disparo enemigo (SI-13)
+- vidas que se restan (SI-10)
+- escudos (SI-16)
+- avances de oleadas (SI-17)
+- OVNI bonus (SI-14, ya con sprite)
+- SFX (SI-21).
+
+### Response:
+
+Se han implementado las mejoras previstas para la Fase 2.
+
+</br>

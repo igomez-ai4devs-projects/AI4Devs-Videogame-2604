@@ -10,10 +10,26 @@ export class Player {
     this.scale = CONFIG.scale;
     this.w = spriteCols(SPRITES.PLAYER) * this.scale;
     this.h = spriteRows(SPRITES.PLAYER) * this.scale;
-    this.x = (CONFIG.canvas.width - this.w) / 2;
+    this.startX = (CONFIG.canvas.width - this.w) / 2;
+    this.x = this.startX;
     this.y = GROUND_Y - this.h - 6;
     this.speed = CONFIG.player.speed;
     this.cooldownTimer = 0;
+    this.invulnTimer = 0; // > 0 → invulnerable y parpadeando (SI-10)
+  }
+
+  get box() {
+    return { x: this.x, y: this.y, w: this.w, h: this.h };
+  }
+
+  get invulnerable() {
+    return this.invulnTimer > 0;
+  }
+
+  /** Reacciona a un impacto: activa invulnerabilidad y recoloca la nave. */
+  hit() {
+    this.invulnTimer = CONFIG.player.invulnTime;
+    this.x = this.startX;
   }
 
   /**
@@ -22,6 +38,8 @@ export class Player {
    * @param {Bullet[]} bullets lista compartida donde añadir disparos
    */
   update(dt, input, bullets) {
+    if (this.invulnTimer > 0) this.invulnTimer -= dt;
+
     // Movimiento horizontal (RF-06)
     let dir = 0;
     if (input.isHeld("ArrowLeft") || input.isHeld("a") || input.isHeld("A")) dir -= 1;
@@ -48,6 +66,8 @@ export class Player {
   }
 
   render(ctx) {
+    // Parpadeo durante la invulnerabilidad (oculta en frames alternos)
+    if (this.invulnerable && Math.floor(this.invulnTimer * 10) % 2 === 0) return;
     drawSprite(ctx, SPRITES.PLAYER, this.x, this.y, this.scale, CONFIG.colors.green);
   }
 }

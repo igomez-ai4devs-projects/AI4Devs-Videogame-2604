@@ -14,6 +14,9 @@ class Game {
     this.ctx.imageSmoothingEnabled = false;
     this.input = new Input(canvas);
 
+    // High-score persistente entre sesiones (SI-20)
+    this.highScore = this.loadHighScore();
+
     // Datos de sesión compartidos
     this.session = this.freshSession();
 
@@ -35,8 +38,25 @@ class Game {
       score: 0,
       level: 1,
       lives: CONFIG.player.lives,
-      highScore: this.session?.highScore ?? 0, // el récord persiste en la sesión
+      highScore: this.highScore, // récord persistente (SI-20)
     };
+  }
+
+  loadHighScore() {
+    try {
+      return parseInt(localStorage.getItem("si_highscore"), 10) || 0;
+    } catch {
+      return 0; // localStorage no disponible (p. ej. file:// restringido)
+    }
+  }
+
+  saveHighScore() {
+    this.highScore = this.session.highScore;
+    try {
+      localStorage.setItem("si_highscore", String(this.highScore));
+    } catch {
+      /* almacenamiento no disponible: se mantiene en memoria */
+    }
   }
 
   /** Inicia una partida nueva (desde menú o "PLAY AGAIN"). */
