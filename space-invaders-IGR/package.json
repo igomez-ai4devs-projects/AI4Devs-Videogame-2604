@@ -1,0 +1,12 @@
+{
+  "name": "space-invaders-igr",
+  "version": "1.0.0",
+  "description": "Space Invaders clásico en HTML5 + CSS + JavaScript (Canvas API nativo)",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run.mjs",
+    "start": "npx --yes serve -l 8000 ."
+  },
+  "keywords": ["space-invaders", "canvas", "game", "javascript", "html5"],
+  "license": "MIT"
+}

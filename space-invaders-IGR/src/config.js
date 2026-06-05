@@ -50,6 +50,28 @@ export const CONFIG = {
     fireSpeedup: 0.9, // los enemigos disparan más a menudo por nivel
   },
 
+  // OVNI / Mystery bonus (SI-14)
+  ufo: {
+    y: 60,
+    speed: 170, // px/s
+    minDelay: 9, // s mínimo entre apariciones
+    maxDelay: 18, // s máximo entre apariciones
+    points: [50, 100, 150, 300], // puntuación aleatoria al destruirlo
+  },
+
+  // Escudos / búnkeres destructibles (SI-16)
+  shields: {
+    count: 4,
+    cell: 4, // tamaño de cada bloque destructible (px)
+    cols: 22,
+    rows: 16,
+    y: 430, // posición vertical de los búnkeres
+    blastRadius: 2, // radio de destrucción por impacto (en celdas)
+  },
+
+  // Feedback visual de explosión (SI-21)
+  explosion: { duration: 0.22 },
+
   // Puntuación por tipo de invasor (ver GAME-DESIGN.md §2.1)
   points: { A: 30, B: 20, C: 10 },
 

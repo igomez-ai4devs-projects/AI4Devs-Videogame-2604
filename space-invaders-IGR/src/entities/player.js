@@ -62,7 +62,9 @@ export class Player {
         )
       );
       this.cooldownTimer = CONFIG.player.cooldown;
+      return true; // disparó (para reproducir el SFX)
     }
+    return false;
   }
 
   render(ctx) {

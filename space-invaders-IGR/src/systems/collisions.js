@@ -7,10 +7,10 @@ import { aabb } from "../utils/helpers.js";
  * Marca como muertos los invasores y proyectiles impactados.
  * @param {import("../entities/bullet.js").Bullet[]} bullets
  * @param {import("../entities/grid.js").InvaderGrid} grid
- * @returns {number} puntos ganados en esta resolución
+ * @returns {{points:number,x:number,y:number,w:number,h:number}[]} invasores destruidos
  */
 export function resolvePlayerBullets(bullets, grid) {
-  let gained = 0;
+  const destroyed = [];
   for (const bullet of bullets) {
     if (!bullet.alive) continue;
     for (const inv of grid.invaders) {
@@ -18,12 +18,30 @@ export function resolvePlayerBullets(bullets, grid) {
       if (aabb(bullet, inv.box)) {
         inv.alive = false;
         bullet.alive = false;
-        gained += inv.points;
+        destroyed.push({ points: inv.points, x: inv.x, y: inv.y, w: inv.w, h: inv.h });
         break; // un proyectil destruye un solo invasor
       }
     }
   }
-  return gained;
+  return destroyed;
+}
+
+/**
+ * Resuelve impactos de proyectiles contra los escudos (SI-16, RF-21).
+ * Erosiona el búnker y consume el proyectil al tocar un bloque sólido.
+ * @param {import("../entities/bullet.js").Bullet[]} bullets
+ * @param {import("../entities/shield.js").Shield[]} shields
+ */
+export function resolveShieldCollisions(bullets, shields) {
+  for (const bullet of bullets) {
+    if (!bullet.alive) continue;
+    for (const shield of shields) {
+      if (shield.hit(bullet)) {
+        bullet.alive = false;
+        break;
+      }
+    }
+  }
 }
 
 /**
