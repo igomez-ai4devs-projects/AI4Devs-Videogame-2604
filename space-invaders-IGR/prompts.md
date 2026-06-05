@@ -96,3 +96,17 @@ Como experto diseñador de videojuegos, basándote en las 3 imágenes que te pas
 Se ha generado un fichero **GAME-DESIGN.md** con todos los requisitos de diseño del videojuego.
 
 </br>
+
+## Prompt 5:
+
+Agent: Claude Code - Sonnet 4.6
+
+### Request:
+
+Como experto analista programador, utiliza los documentos creados dentro de la carpeta 'space-invaders-IGR', principalmente el documento de diseño y el PRD y, genera un documento markdown los los casos de uso.
+
+### Response:
+
+Se ha generado un fichero **USE-CASES.md** con todos los casos de uso.
+
+</br>
